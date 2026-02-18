@@ -75,12 +75,15 @@ const entities = [
             logging: false,
           };
         }
+        const dbUrl = config.get('DATABASE_URL') || '';
+        const isSupabase = dbUrl.includes('supabase.co');
         return {
           type: 'postgres',
-          url: config.get('DATABASE_URL'),
+          url: dbUrl,
           entities,
           synchronize: true,
           logging: false,
+          ssl: isSupabase ? { rejectUnauthorized: false } : false,
         };
       },
       inject: [ConfigService],
