@@ -41,5 +41,13 @@ Thumbs.db
 # Test coverage
 coverage/
 
+# Claude Code settings
+.claude/
+
+# Backup files
+*.bak
+
 # Misc
 nul
+
+.vercel

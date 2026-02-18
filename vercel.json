@@ -1,6 +1,7 @@
 {
+  "name": "bot-plataform",
   "buildCommand": "pnpm --filter frontend build",
   "outputDirectory": "apps/frontend/.next",
-  "installCommand": "npm install -g pnpm@9 && pnpm install",
+  "installCommand": "npm install -g pnpm@9 && pnpm install --no-frozen-lockfile",
   "framework": "nextjs"
 }
