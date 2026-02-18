@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste do Widget - Chat Platform</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .status {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .status h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🚀 Widget de Chat</h1>
+        <p>
+            Esta é uma página de teste para o widget de chat. O botão deve aparecer no canto inferior direito da tela.
+        </p>
+
+        <div class="status">
+            <h2>Status da Configuração:</h2>
+            <p>✅ Widget Key: <code>81e5dc6c-e247-43f0-9d0c-de189858470f</code></p>
+            <p>✅ Server URL: <code>http://localhost:3001</code></p>
+            <p>✅ Script: <code>http://localhost:3001/api/widget/widget.js</code></p>
+        </div>
+
+        <p style="margin-top: 30px;">
+            <strong>Instruções:</strong><br>
+            1. Verifique se o backend está rodando na porta 3001<br>
+            2. Procure pelo botão de chat no canto inferior direito<br>
+            3. Clique para abrir o widget e testar
+        </p>
+    </div>
+
+    <!-- Widget installation -->
+    <script>
+        console.log('🔧 Inicializando widget...');
+        window.ChatWidget = {
+            key: '81e5dc6c-e247-43f0-9d0c-de189858470f',
+            serverUrl: 'http://localhost:3001'
+        };
+        console.log('✅ Configuração do widget:', window.ChatWidget);
+    </script>
+    <script src="http://localhost:3001/api/widget/widget.js" onload="console.log('✅ Script do widget carregado')"
+        onerror="console.error('❌ Erro ao carregar script do widget')"></script>
+</body>
+
+</html>

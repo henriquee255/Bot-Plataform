@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Widget Demo — Chat Platform</title>
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 0 24px;
+      color: #111;
+    }
+    h1 { font-size: 2rem; margin-bottom: 8px; }
+    p { color: #555; line-height: 1.6; }
+    .card {
+      background: #f8f9fb;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 24px 0;
+    }
+    code {
+      background: #1e1f2e;
+      color: #a5f3fc;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chat Widget Demo</h1>
+  <p>
+    Esta página demonstra o widget embeddable. O botão de chat aparece no canto inferior direito.
+  </p>
+  <div class="card">
+    <p><strong>Como instalar em qualquer site:</strong></p>
+    <br>
+    <code>
+      &lt;script&gt;<br>
+      &nbsp;&nbsp;window.ChatWidget = { key: 'SEU_WIDGET_KEY' };<br>
+      &lt;/script&gt;<br>
+      &lt;script src="https://seudominio.com/widget.js" async&gt;&lt;/script&gt;
+    </code>
+  </div>
+  <p>
+    O widget persiste a conversa via cookie. Se o visitante fechar e reabrir o browser,
+    o histórico é mantido. Quando o agente responde offline, o cliente recebe um email.
+  </p>
+
+  <!-- Widget installation -->
+  <script>
+    window.ChatWidget = {
+      key: 'SUBSTITUA_PELO_WIDGET_KEY_DA_EMPRESA',
+      serverUrl: 'http://localhost:3001'
+    };
+  </script>
+  <script src="http://localhost:3001/api/widget/widget.js"></script>
+</body>
+</html>

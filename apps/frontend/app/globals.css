@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8f9fb;
+  --foreground: #111827;
+  --sidebar-bg: #1e1f2e;
+  --sidebar-text: #e5e7eb;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --muted: #6b7280;
+  --unread-badge: #ef4444;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin: 0;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 2px;
+}
+
+/* Message bubbles */
+.msg-agent {
+  background: var(--primary);
+  color: white;
+  border-radius: 18px 18px 4px 18px;
+  max-width: 70%;
+  padding: 8px 14px;
+  margin-left: auto;
+  word-break: break-word;
+}
+
+.msg-contact {
+  background: #ffffff;
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: 18px 18px 18px 4px;
+  max-width: 70%;
+  padding: 8px 14px;
+  word-break: break-word;
+}
+
+.msg-system {
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+  padding: 4px 0;
+}
