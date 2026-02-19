@@ -3,11 +3,9 @@ services:
     name: bot-plataform-backend
     runtime: node
     rootDir: .
-    buildCommand: npm install -g pnpm@9 && NODE_ENV=development pnpm install --no-frozen-lockfile && pnpm --filter @chat/widget build && pnpm --filter backend build
-    startCommand: node apps/backend/dist/main
+    buildCommand: npm install -g pnpm@9 && pnpm install --no-frozen-lockfile && pnpm --filter @chat/widget build && pnpm --filter backend build
+    startCommand: NODE_ENV=production node apps/backend/dist/main
     healthCheckPath: /api/health
     envVars:
-      - key: NODE_ENV
-        value: production
       - key: USE_SQLITE
         value: false
