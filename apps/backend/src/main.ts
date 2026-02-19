@@ -5,12 +5,43 @@ import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 
 // Prevent unhandled Redis/IORedis errors from crashing the process
 process.on('unhandledRejection', (reason) => {
-  if (reason && typeof reason === 'object' && (reason as any).message?.includes('ECONNREFUSED')) return;
+  if (reason && typeof reason === 'object') {
+    const msg = (reason as any).message || '';
+    if (msg.includes('ECONNREFUSED') || msg.includes('ENETUNREACH') || msg.includes('ENOTFOUND')) {
+      console.error('[DB/Redis] Connection error (non-fatal):', msg);
+      return;
+    }
+  }
   console.error('Unhandled rejection:', reason);
 });
 
+function startFallbackServer(port: number | string, reason: string) {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const http = require('http');
+  const server = http.createServer((_req: any, res: any) => {
+    if (_req.url === '/api/health') {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ status: 'starting', reason }));
+    } else {
+      res.writeHead(503);
+      res.end('Service starting...');
+    }
+  });
+  server.listen(port, () => {
+    console.log(`[Fallback] HTTP server on port ${port}. Reason: ${reason}`);
+  });
+}
+
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  let app: any;
+  try {
+    app = await NestFactory.create(AppModule);
+  } catch (err: any) {
+    console.error('[Bootstrap] Failed to initialize NestJS app:', err?.message || err);
+    const port = process.env.PORT || 3001;
+    startFallbackServer(port, err?.message || 'initialization error');
+    return;
+  }
 
   app.setGlobalPrefix('api');
 
