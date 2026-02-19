@@ -5,7 +5,7 @@ echo "=== Instalando pnpm ==="
 npm install -g pnpm@9
 
 echo "=== Instalando dependencias ==="
-NODE_ENV=development pnpm install --no-frozen-lockfile
+pnpm install --no-frozen-lockfile
 
 echo "=== Buildando widget ==="
 cd packages/widget
