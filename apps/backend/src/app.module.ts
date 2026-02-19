@@ -76,7 +76,7 @@ const entities = [
           };
         }
         const dbUrl = config.get('DATABASE_URL') || '';
-        const isSupabase = dbUrl.includes('supabase.co');
+        const isSupabase = dbUrl.includes('supabase.co') || dbUrl.includes('pooler.supabase.com');
         return {
           type: 'postgres',
           url: dbUrl,
@@ -84,6 +84,10 @@ const entities = [
           synchronize: true,
           logging: false,
           ssl: isSupabase ? { rejectUnauthorized: false } : false,
+          extra: {
+            family: 4, // Force IPv4 (required for Render free tier)
+            connectionTimeoutMillis: 30000,
+          },
         };
       },
       inject: [ConfigService],
